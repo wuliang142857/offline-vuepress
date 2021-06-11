@@ -4,8 +4,8 @@
 
 But sometimes we don't have an HTTP server to host, so we hope to open it in the local browser to access. There are many similar problems in VuePress Issue, such as:
  
-  -[#796](https://github.com/vuejs/vuepress/issues/796)
-  -[#387](https://github.com/vuejs/vuepress/issues/387)
+  - [#796](https://github.com/vuejs/vuepress/issues/796)
+  - [#387](https://github.com/vuejs/vuepress/issues/387)
 
 This procedure is to solve this problem.
 
@@ -25,7 +25,7 @@ vuepress-offline -d dist
 
 # Features
 
-  -Support the conversion of `css`, `javascript`, `image`, and `hyperlinks` in HTML pages
-  -Support conversion of part of `import` in CSS
+  - Support the conversion of `css`, `javascript`, `image`, and `hyperlinks` in HTML pages
+  - Support conversion of part of `import` in CSS
 
   
