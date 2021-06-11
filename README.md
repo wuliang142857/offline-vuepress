@@ -1,5 +1,7 @@
 # vuepress-offline: Offline vuepress output page
 
+[中文文档](README_zh_CN.md)
+
 [VuePress](https://vuepress.vuejs.org/) is a very good static website generator, but the static files it generates can only be hosted on HTTP services for browsing.
 
 But sometimes we don't have an HTTP server to host, so we hope to open it in the local browser to access. There are many similar problems in VuePress Issue, such as:
