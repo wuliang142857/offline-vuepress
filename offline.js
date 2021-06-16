@@ -79,7 +79,16 @@ function offlineHtmlFile(fileName) {
     const $ = cheerio.load(htmlContent);
     // CSS
     $("link").each((index, element) => {
+        const relAttributeValue = $(element).attr("rel");
+        if (relAttributeValue === "preload" || relAttributeValue === "prefetch") {
+            // remove preload and prefetch
+            $(element).remove();
+        }
+
         const attributeValue = $(element).attr("href");
+        if (!path.isAbsolute(attributeValue)) {
+            return;
+        }
         const realAttributeValue = path.join(distPath, attributeValue);
         const relativeValue = path.relative(path.dirname(fileName), realAttributeValue);
         $(element).attr("href", relativeValue);
@@ -87,6 +96,9 @@ function offlineHtmlFile(fileName) {
     // JS
     $("script").each((index, element) => {
         const attributeValue = $(element).attr("src");
+        if (!path.isAbsolute(attributeValue)) {
+            return;
+        }
         const realAttributeValue = path.join(distPath, attributeValue);
         const relativeValue = path.relative(path.dirname(fileName), realAttributeValue);
         $(element).attr("src", relativeValue);
@@ -95,6 +107,9 @@ function offlineHtmlFile(fileName) {
     $("a").each((index, element) => {
         const attributeValue = $(element).attr("href");
         if (isUrl(attributeValue)) {
+            return;
+        }
+        if (!path.isAbsolute(attributeValue)) {
             return;
         }
         let realAttributeValue = path.join(distPath, attributeValue);
@@ -108,6 +123,9 @@ function offlineHtmlFile(fileName) {
     $("img").each((index, element) => {
         const attributeValue = $(element).attr("src");
         if (isAbsoluteUrl(attributeValue)) {
+            return;
+        }
+        if (!path.isAbsolute(attributeValue)) {
             return;
         }
         if (isUrl(attributeValue)) {

@@ -30,4 +30,8 @@ vuepress-offline -d dist
   - Support the conversion of `css`, `javascript`, `image`, and `hyperlinks` in HTML pages
   - Support conversion of part of `import` in CSS
 
-  
+# Change Log
+
+  - V0.1.3
+    - fix tranform failed when relative path 
+

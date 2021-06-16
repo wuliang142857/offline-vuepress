@@ -28,3 +28,7 @@ vuepress-offline -d dist
  - 支持对HTML页面中`css`、`javascript`、`image`、`超链接`的转换
  - 支持对CSS中部分`import`的转换
   
+# 更新歷史
+
+ - V0.1.3
+   - 修復相對路徑轉換失敗的問題
