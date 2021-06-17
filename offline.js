@@ -55,6 +55,9 @@ function offlineCssFile(fileName) {
         if (rule.type !== "import") {
             return;
         }
+        if (isBlank(rule.import)) {
+            return;
+        }
         const importParsed = /url\((.*?)\)/.exec(rule.import);
         if (importParsed === null) {
             return;
@@ -86,6 +89,9 @@ function offlineHtmlFile(fileName) {
         }
 
         const attributeValue = $(element).attr("href");
+        if (isBlank(attributeValue)) {
+            return;
+        }
         if (!path.isAbsolute(attributeValue)) {
             return;
         }
@@ -96,6 +102,9 @@ function offlineHtmlFile(fileName) {
     // JS
     $("script").each((index, element) => {
         const attributeValue = $(element).attr("src");
+        if (isBlank(attributeValue)) {
+            return;
+        }
         if (!path.isAbsolute(attributeValue)) {
             return;
         }
@@ -106,6 +115,9 @@ function offlineHtmlFile(fileName) {
     // a.href
     $("a").each((index, element) => {
         const attributeValue = $(element).attr("href");
+        if (isBlank(attributeValue)) {
+            return;
+        }
         if (isUrl(attributeValue)) {
             return;
         }
@@ -122,6 +134,9 @@ function offlineHtmlFile(fileName) {
     // img
     $("img").each((index, element) => {
         const attributeValue = $(element).attr("src");
+        if (isBlank(attributeValue)) {
+            return;
+        }
         if (isAbsoluteUrl(attributeValue)) {
             return;
         }
@@ -140,4 +155,8 @@ function offlineHtmlFile(fileName) {
 
     const transformedHtml = $.html();
     fs.writeFileSync(fileName, transformedHtml, "utf-8");
+}
+
+function isBlank(s) {
+    return (typeof(s) !== "string") || (s.length === 0);
 }
